@@ -1,0 +1,16 @@
+<div *ngIf="!isSingleView">
+  <nz-layout *ngIf="!isSingleView">
+    <nz-header id="header"></nz-header>
+    <nz-layout id="main">
+      <nz-content><router-outlet></router-outlet></nz-content>
+      <nz-sider class="aside" nzWidth="300">
+        <nz-card nzTitle="Welcome">
+          <p>欢迎来到DD博客系统</p>
+        </nz-card>
+      </nz-sider>
+    </nz-layout>
+  </nz-layout>
+</div>
+<div *ngIf="isSingleView">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,168 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
+$white: #ffffff;
+$blue: #007bff;
+$red: #dc3545;
+$yellow: #ffc107;
+$green: #28a745;
+$cyan: #17a2b8;
+$bodyBg: #f7f7f7;
+
+$primary: $blue;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+
+body {
+  padding: 0;
+  margin: 0;
+  background: $bodyBg;
+}
+
+$w-list: 50, 60, 70, 80, 90, 100, 120, 150, 180, 200, 250, 300, 350, 400, 450,
+  500, 600, 700, 800, 900, 1000, 1200;
+@each $w in $w-list {
+  .w-#{$w} {
+    width: $w + px;
+  }
+  .h-#{$w} {
+    height: $w + px;
+  }
+}
+
+$f-list: 12, 14, 16, 18, 20, 22, 24;
+@each $f in $f-list {
+  .f-#{$f} {
+    font-size: $f + px;
+  }
+}
+
+$m-list: 0, 5, 10, 15, 18, 20, 25, 30, 50, 60, 70, 80, 90, 100, 150, 200, 250;
+@each $m in $m-list {
+  $size: $m + px;
+  .m-#{$m} {
+    margin: $size;
+  }
+  .mx-#{$m} {
+    margin-left: $size;
+    margin-right: $size;
+  }
+  .mt-#{$m} {
+    margin-top: $size;
+  }
+  .m--#{$m} {
+    margin-bottom: $size;
+  }
+  .ml-#{$m} {
+    margin-left: $size;
+  }
+  .mr-#{$m} {
+    margin-right: $size;
+  }
+
+  .p-#{$m} {
+    padding: $size;
+  }
+  .px-#{$m} {
+    padding-left: $size;
+    padding-right: $size;
+  }
+  .pt-#{$m} {
+    padding-top: $size;
+  }
+  .pb-#{$m} {
+    padding-bottom: $size;
+  }
+  .pl-#{$m} {
+    padding-left: $size;
+  }
+  .pr-#{$m} {
+    padding-right: $size;
+  }
+}
+
+$c-list: $primary, $success, $info, $danger, $warning;
+@each $c in $c-list {
+  .t-#{$c} {
+    color: #{$c};
+  }
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.o-auto {
+  overflow: auto;
+}
+
+.o-scroll {
+  overflow: scroll;
+}
+
+.o-auto {
+  overflow: auto;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.t-left {
+  text-align: left;
+}
+
+.t-right {
+  text-align: right;
+}
+.t-center {
+  text-align: center;
+}
+
+.f-right {
+  float: right;
+}
+.f-left {
+  float: left;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-iblock {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-2 {
+  flex: 2;
+}
+
+.bg-white {
+  background-color: $white;
+}
+.bg-blue {
+  background-color: $blue;
+}
+
+.transform-center {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}

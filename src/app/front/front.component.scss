@@ -1,0 +1,16 @@
+#header {
+  padding: 0 5%;
+  height: 60px;
+  background: #fff;
+}
+#main {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10px;
+  max-width: 1400px;
+  min-height: calc(100vh - 50px);
+  .aside {
+    background: transparent;
+    margin-left: 10px;
+  }
+}

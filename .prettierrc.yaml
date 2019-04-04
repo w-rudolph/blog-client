@@ -1,0 +1,4 @@
+# html
+htmlWhitespaceSensitivity: "ignore"
+singleQuote: true
+semi: true

@@ -1,0 +1,27 @@
+.admin-aside {
+  position: fixed;
+  left: 0;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 100vh;
+  border-right: 1px solid #ddd;
+  .ant-menu-inline {
+    border-right: none;
+  }
+}
+
+.collapse-menu {
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.collapse-menu:hover {
+  color: #1890ff;
+}
+
+.admin-content {
+  background: #fff;
+  padding: 20px;
+}

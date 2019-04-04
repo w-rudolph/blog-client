@@ -1,0 +1,65 @@
+<div class="admin-login">
+  <div class="transform-center login-panel">
+    <div class="font-weight-bold f-20 t-center pt-30">
+      <span>账号登录</span>
+    </div>
+    <div class="mt-60">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixUser">
+              <input
+                formControlName="userName"
+                nz-input
+                autocomplete="off"
+                placeholder="用户名或邮箱" />
+            </nz-input-group>
+            <nz-form-explain
+              *ngIf="validateForm.get('userName')?.dirty &&
+              validateForm.get('userName')?.errors">
+              <span>请输入账户!</span>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixLock">
+              <input
+                nz-input
+                formControlName="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="密码" />
+            </nz-input-group>
+            <nz-form-explain
+              *ngIf="validateForm.get('password')?.dirty &&
+              validateForm.get('password')?.errors">
+              <span>请输入密码!</span>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              nz-button
+              nzBlock
+              [nzLoading]="isLoading"
+              nzType="primary">
+              登录
+            </button>
+            <div class="t-right">
+              <label
+                class="f-left"
+                nz-checkbox
+                formControlName="remember">记住账号</label>
+              <!-- <a class="mr-10" routerLink="/reset-password">忘记密码</a> -->
+              <a routerLink="/register">注册账户</a>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+      <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+    </div>
+  </div>
+</div>

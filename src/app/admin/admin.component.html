@@ -1,0 +1,82 @@
+<div>
+  <!-- prettier-ignore-attribute -->
+  <nz-layout *ngIf="!isSingleView">
+    <nz-sider
+      [(nzCollapsed)]="isCollapsed"
+      [nzTheme]="theme"
+      class="admin-aside">
+      <ul
+        nz-menu
+        nzMode="inline"
+        [nzTheme]="theme"
+        [nzInlineCollapsed]="isCollapsed">
+        <li nz-menu-item routerLink="/">
+          <span title>
+            <i nz-icon type="home"></i><span class="nav-text">到首页</span>
+          </span>
+        </li>
+        <li nz-submenu>
+          <span title><i nz-icon type="user"></i><span class="nav-text">文章</span></span>
+          <ul>
+            <li nz-menu-item routerLink="/admin/post">我的文章</li>
+            <li nz-menu-item routerLink="/admin/post/new">写文章</li>
+          </ul>
+        </li>
+        <li nz-submenu>
+          <span title><i nz-icon type="setting"></i><span class="nav-text">设置</span></span>
+          <ul>
+            <li nz-menu-item routerLink="/admin/profile">账户信息</li>
+            <li nz-menu-item routerLink="/admin/update-password">修改密码</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+
+    <nz-layout [ngClass]="isCollapsed ? 'ml-80' : 'ml-200'">
+      <nz-header class="bg-white px-10">
+        <div class="f-left">
+          <i
+            class="collapse-menu"
+            nz-icon
+            [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            (click)="toggleMenu()"></i>
+        </div>
+        <div class="f-right">
+          <span *ngIf="!!userInfo.name" class="mr-10">
+            <span>你好，</span>
+            <nz-dropdown
+              (nzVisibleChange)="onMenuChange($event)"
+              nzPlacement="bottomRight">
+              <a nz-dropdown>
+                <span class="font-weight-bold">{{userInfo.name}}</span>
+                <i nz-icon type="down"></i>
+              </a>
+              <ul nz-menu>
+                <li nz-menu-item (click)="onMenuChange('logout')">退出登陆</li>
+                <li nz-menu-item routerLink="/admin/update-password">修改密码</li>
+                <li nz-submenu>
+                  <span title>主题</span>
+                  <ul nz-menu>
+                    <li nz-menu-item
+                      (click)="onMenuChange('change-theme',
+                      'dark')">dark</li>
+                    <li nz-menu-item
+                      (click)="onMenuChange('change-theme',
+                      'light')">light</li>
+                  </ul>
+                </li>
+              </ul>
+            </nz-dropdown>
+          </span>
+        </div>
+      </nz-header>
+      <nz-content class="pl-10 admin-content">
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+
+  <div *ngIf="isSingleView">
+    <router-outlet></router-outlet>
+  </div>
+</div>

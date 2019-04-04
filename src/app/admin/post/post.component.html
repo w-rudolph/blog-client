@@ -1,0 +1,35 @@
+<div>
+    <nz-table #basicTable nzBordered [nzData]="postList" [nzTotal]="total">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>摘要</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.id }}</td>
+                <td>{{ data.title }}</td>
+                <td>{{ data.abstract }}</td>
+                <td>
+                    <nz-tag [nzColor]="'blue'">
+                        {{ getPostStatusName(data.status)}}
+                    </nz-tag>
+                </td>
+                <td>{{ data.createAt }}</td>
+                <td>{{ data.updateAt }}</td>
+                <td>
+                    <button
+                        nz-button
+                        routerLink="/admin/post/edit"
+                        [queryParams]="{id: data.id}">编辑</button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>

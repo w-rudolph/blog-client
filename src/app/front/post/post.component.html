@@ -1,0 +1,20 @@
+<div class="posts">
+  <div class="post-item" *ngFor="let post of postList">
+    <div class="post-title">{{post.title}}</div>
+    <div class="post-abstract">{{post.abstract}}</div>
+    <div class="post-footer">
+      <div
+        class="f-left"
+        [title]="post.createAt | date:'yyyy:MM:dd HH:mm'">
+        <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
+        <span>&nbsp;{{post.createAt | timeago}}</span>
+      </div>
+      <div class="f-right">
+        <a [routerLink]="['/post', post.id]">
+          <span>查看更多&nbsp;</span>
+          <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

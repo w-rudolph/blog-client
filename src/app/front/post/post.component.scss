@@ -1,0 +1,23 @@
+.post-item {
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  transition: box-shadow 0.3s linear;
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.09);
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.09);
+  }
+}
+
+.post-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+}
+
+.post-footer {
+  overflow: hidden;
+  font-size: 14px;
+  margin: 10px 0px;
+}

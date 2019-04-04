@@ -1,0 +1,92 @@
+<div class="admin-register">
+  <div class="transform-center register-panel">
+    <div class="font-weight-bold f-20 t-center pt-30">
+      <span>账号注册</span>
+    </div>
+    <div class="mt-15">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixUser">
+              <input
+                nz-input
+                formControlName="userName"
+                autocomplete="off"
+                placeholder="用户名" />
+            </nz-input-group>
+            <nz-form-explain
+              *ngIf="validateForm.get('userName')?.dirty &&
+              validateForm.get('userName')?.errors">
+              <span>请输入用户名!</span>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixEmail">
+              <input
+                nz-input
+                formControlName="email"
+                autocomplete="off"
+                type="email"
+                placeholder="邮箱" />
+            </nz-input-group>
+            <nz-form-explain
+              *ngIf="validateForm.get('email')?.dirty &&
+              validateForm.get('email')?.errors">
+              <span>请输入正确的邮箱!</span>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixLock">
+              <input
+                nz-input
+                formControlName="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="密码" />
+            </nz-input-group>
+            <nz-form-explain
+              *ngIf="validateForm.get('password')?.dirty &&
+              validateForm.get('password')?.errors">
+              <span>请输入密码!</span>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixLock">
+              <input
+                nz-input
+                formControlName="repassword"
+                type="password"
+                autocomplete="new-password"
+                placeholder="确认密码" />
+            </nz-input-group>
+            <nz-form-explain
+              *ngIf="validateForm.get('repassword')?.dirty &&
+              validateForm.get('repassword')?.errors">
+              <span>请输入确认密码!</span>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              nz-button
+              nzBlock
+              [nzLoading]="isLoading"
+              nzType="primary">
+              确定
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+      <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+      <ng-template #prefixEmail><i nz-icon type="mail"></i></ng-template>
+    </div>
+  </div>
+</div>
