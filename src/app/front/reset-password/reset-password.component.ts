@@ -13,8 +13,8 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit, OnDestroy {
-  private validateForm: FormGroup;
-  private sub$: Subscription;
+  validateForm: FormGroup;
+  sub$: Subscription;
   isLoading = false;
   lockBtn = false;
   restTime = '';

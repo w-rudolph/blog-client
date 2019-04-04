@@ -12,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private validateForm: FormGroup;
+  validateForm: FormGroup;
   isLoading = false;
   constructor(
     private fb: FormBuilder,

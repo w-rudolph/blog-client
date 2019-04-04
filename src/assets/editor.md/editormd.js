@@ -4102,11 +4102,13 @@
      * @param {Function} [callback=function()] 加载成功后执行的回调函数
      * @param {String}   [into="head"]         嵌入页面的位置
      */
-    
+
     editormd.loadCSS   = function(fileName, callback, into) {
         into       = into     || "head";        
         callback   = callback || function() {};
-        
+        if ($.inArray(fileName, editormd.loadFiles.css) > -1) {
+            return callback();
+        }
         var css    = document.createElement("link");
         css.type   = "text/css";
         css.rel    = "stylesheet";
@@ -4140,7 +4142,9 @@
         
         into          = into     || "head";
         callback      = callback || function() {};
-        
+        if ($.inArray(fileName, editormd.loadFiles.js) > -1) {
+            return callback();
+        }
         var script    = null; 
         script        = document.createElement("script");
         script.id     = fileName.replace(/[\./]+/g, "-");

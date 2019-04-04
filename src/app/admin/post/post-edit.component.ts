@@ -15,7 +15,7 @@ export class PostEditComponent implements OnInit {
   @ViewChild('mdEditor') mdEditor: EditorMDComponent;
   postId: number;
   isLoading = false;
-  private validateForm: FormGroup;
+  validateForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,

@@ -11,8 +11,8 @@ import { NzMessageService } from 'ng-zorro-antd';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  private validateForm: FormGroup;
-  private isLoading = false;
+  validateForm: FormGroup;
+  isLoading = false;
   constructor(
     private fb: FormBuilder,
     private userService: UserService,

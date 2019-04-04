@@ -1,6 +1,6 @@
 <div>
   <!-- prettier-ignore-attribute -->
-  <nz-layout *ngIf="!isSingleView">
+  <nz-layout>
     <nz-sider
       [(nzCollapsed)]="isCollapsed"
       [nzTheme]="theme"
@@ -75,8 +75,4 @@
       </nz-content>
     </nz-layout>
   </nz-layout>
-
-  <div *ngIf="isSingleView">
-    <router-outlet></router-outlet>
-  </div>
 </div>

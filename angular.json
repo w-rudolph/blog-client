@@ -37,7 +37,7 @@
             ],
             "scripts": [
               "src/assets/editor.md/lib/jquery.min.js",
-              "src/assets/editor.md/editormd.min.js"
+              "src/assets/editor.md/editormd.js"
             ],
             "es5BrowserSupport": true
           },

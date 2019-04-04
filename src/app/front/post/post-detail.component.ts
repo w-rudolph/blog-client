@@ -7,7 +7,7 @@ import { PostService } from './../../services/post.service';
   styleUrls: ['./post-detail.component.scss']
 })
 export class PostDetailComponent implements OnInit {
-  postDetail = {};
+  postDetail: any = {};
   constructor(
     private postService: PostService,
     private router: ActivatedRoute
