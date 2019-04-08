@@ -9,6 +9,7 @@ import { PostEditComponent } from './post/post-edit.component';
 import { ProfileComponent } from './setting/profile.component';
 import { UpdatePasswordComponent } from './setting/update-password.component';
 import { EditorMDComponent } from './../components/editor/editor-md.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { EditorMDComponent } from './../components/editor/editor-md.component';
     ProfileComponent,
     PostEditComponent,
     UpdatePasswordComponent,
-    EditorMDComponent
+    EditorMDComponent,
+    CategoryComponent
   ],
   imports: [
     RouterModule.forChild([
@@ -37,6 +39,10 @@ import { EditorMDComponent } from './../components/editor/editor-md.component';
           {
             path: 'post/new',
             component: PostEditComponent
+          },
+          {
+            path: 'category',
+            component: CategoryComponent
           },
           {
             path: 'profile',

@@ -8,6 +8,11 @@ const basePath = `${protocol}//${ApiHost.blog}`;
 export const useUserApi = (action: string) => `${basePath}/admin/user/${action}`;
 
 /**
+ * 分类接口
+ */
+export const useCategoryApi = (action: string) => `${basePath}/admin/category/${action}`;
+
+/**
  * 文章接口
  */
 export const usePostApi = (action: string) => `${basePath}/admin/post/${action}`;
