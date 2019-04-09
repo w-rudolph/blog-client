@@ -2,6 +2,15 @@
   padding: 0 5%;
   height: 60px;
   background: #fff;
+  .ant-menu-horizontal {
+    border-bottom: none;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .menu-item {
+    height: 60px;
+    line-height: 60px;
+  }
 }
 #main {
   width: 90%;

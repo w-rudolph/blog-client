@@ -1,6 +1,15 @@
 <div *ngIf="!isSingleView">
   <nz-layout *ngIf="!isSingleView">
-    <nz-header id="header"></nz-header>
+    <nz-header id="header">
+      <ul nz-menu nzMode="horizontal">
+        <li 
+          class="menu-item" 
+          nz-menu-item 
+          *ngFor="let cat of catList"
+          [routerLink]="['/category', cat.id]"
+          >{{ cat.name }}</li>
+      </ul>
+    </nz-header>
     <nz-layout id="main">
       <nz-content><router-outlet></router-outlet></nz-content>
       <nz-sider class="aside" nzWidth="300">

@@ -34,6 +34,10 @@ import { TimeagoPipe } from './../pipes/timeago.pipe';
             component: PostComponent
           },
           {
+            path: 'category/:id',
+            component: PostComponent
+          },
+          {
             path: 'post/:id',
             component: PostDetailComponent
           },

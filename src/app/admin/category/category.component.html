@@ -12,6 +12,7 @@
         <th>ID</th>
         <th>名称</th>
         <th>别名</th>
+        <th>排序</th>
         <th>状态</th>
         <th>创建时间</th>
         <th>更新时间</th>
@@ -23,6 +24,7 @@
         <td>{{ data.id }}</td>
         <td>{{ data.name }}</td>
         <td>{{ data.alias }}</td>
+        <td>{{ data.sort }}</td>
         <td>
           <nz-tag [nzColor]="getCategoryStatusColor(data.status)">
             {{ data.status_name }}
@@ -102,6 +104,23 @@
           </nz-form-explain>
         </div>
       </nz-form-item>
+      <nz-form-item>
+          <nz-form-label>排序</nz-form-label>
+          <nz-form-control>
+            <nz-input-number nzMin="1" formControlName="sort"></nz-input-number>
+          </nz-form-control>
+          <div
+            class="has-error"
+            *ngIf="
+              validateForm.get('sort')?.dirty &&
+              validateForm.get('sort')?.errors
+            "
+          >
+            <nz-form-explain>
+              <span>请输入排序值!</span>
+            </nz-form-explain>
+          </div>
+        </nz-form-item>
     </form>
     <ng-template #modalFooter>
       <button nz-button nzType="default" (click)="onCancelEdit()">

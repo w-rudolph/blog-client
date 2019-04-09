@@ -38,6 +38,7 @@ export class CategoryComponent implements OnInit {
       catId: '',
       name: ['', [Validators.required]],
       alias: ['', [Validators.required]],
+      sort: [100, [Validators.required]]
     });
     this.getCategoryList();
   }
@@ -66,6 +67,7 @@ export class CategoryComponent implements OnInit {
     this.validateForm.setValue({
       catId: row.id || '',
       name: row.name || '',
+      sort: row.sort || '',
       alias: row.alias || ''
     });
     this.visibleEdit = true;

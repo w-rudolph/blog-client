@@ -6,7 +6,7 @@ import { usePostApi } from '../utils/base-api';
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private http$: HttpService) {}
+  constructor(private http$: HttpService) { }
 
   getPostDetail(postId: number) {
     return this.http$.get(usePostApi('detail'), { postId });
@@ -16,8 +16,8 @@ export class PostService {
     return this.http$.get(usePostApi('list'));
   }
 
-  getPostSimpleList() {
-    return this.http$.get(usePostApi('list-simple'));
+  getPostSimpleList(catId?: number) {
+    return this.http$.get(usePostApi('list-simple'), { catId });
   }
 
   savePost(params: {

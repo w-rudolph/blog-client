@@ -1,3 +1,4 @@
+import { CategoryService } from './../services/category.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -12,10 +13,12 @@ export class FrontComponent implements OnInit, OnDestroy {
 
   isSingleView = false;
   routerSub$: Subscription;
+  catList = [];
 
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
+    private catService: CategoryService
   ) {}
 
   ngOnInit() {
@@ -25,6 +28,9 @@ export class FrontComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.isSingleView = this.getPageType();
       });
+    this.catService.getCategorySimpleList().subscribe(ret => {
+      this.catList = ret.data;
+    })
   }
 
   getPageType() {
