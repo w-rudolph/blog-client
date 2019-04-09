@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { UserService } from './../services/user.service';
+
 @Component({
   selector: 'app-front',
   templateUrl: './front.component.html',
@@ -19,7 +19,7 @@ export class FrontComponent implements OnInit, OnDestroy {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private catService: CategoryService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.isSingleView = this.getPageType();
@@ -29,8 +29,8 @@ export class FrontComponent implements OnInit, OnDestroy {
         this.isSingleView = this.getPageType();
       });
     this.catService.getCategorySimpleList().subscribe(ret => {
-      this.catList = ret.data;
-    })
+      this.catList = (ret.data as any[]).sort((a, b) => a.sort - b.sort);
+    });
   }
 
   getPageType() {

@@ -2,12 +2,25 @@
   <nz-layout *ngIf="!isSingleView">
     <nz-header id="header">
       <ul nz-menu nzMode="horizontal">
-        <li 
-          class="menu-item" 
-          nz-menu-item 
+        <li
+          class="menu-item"
+          routerLinkActive="ant-menu-item-selected"
+          [routerLinkActiveOptions]="{exact: true}"
+          nz-menu-item
+          routerLink="/"
+        >
+          全部
+        </li>
+        <li
+          class="menu-item"
+          routerLinkActive="ant-menu-item-selected"
+          [routerLinkActiveOptions]="{exact: true}"
+          nz-menu-item
           *ngFor="let cat of catList"
           [routerLink]="['/category', cat.id]"
-          >{{ cat.name }}</li>
+        >
+          {{ cat.name }}
+        </li>
       </ul>
     </nz-header>
     <nz-layout id="main">

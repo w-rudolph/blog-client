@@ -7,11 +7,13 @@ import { PostService } from './../../services/post.service';
   styleUrls: ['./post-detail.component.scss']
 })
 export class PostDetailComponent implements OnInit {
-  postDetail: any = {};
+  postDetail: any = {
+    preview: ''
+  };
   constructor(
     private postService: PostService,
     private router: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.router.params.subscribe(param => {
