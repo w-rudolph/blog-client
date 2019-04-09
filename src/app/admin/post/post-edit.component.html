@@ -3,15 +3,41 @@
     [formGroup]="validateForm"
     (ngSubmit)="submitForm()"
     nz-form
-    nzLayout="vertical">
+    nzLayout="vertical"
+  >
     <nz-form-item>
       <nz-form-label>标题</nz-form-label>
       <nz-form-control>
-        <input nz-input formControlName="title" class="w-450">
+        <input nz-input formControlName="title" class="w-450" />
         <nz-form-explain
-          *ngIf="validateForm.get('title')?.dirty &&
-          validateForm.get('title')?.errors">
+          *ngIf="
+            validateForm.get('title')?.dirty &&
+            validateForm.get('title')?.errors
+          "
+        >
           <span>请输入标题!</span>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>分类</nz-form-label>
+      <nz-form-control>
+        <div class="w-150">
+          <nz-select formControlName="category" nzPlaceHolder="选择分类">
+            <nz-option
+              *ngFor="let cat of catList"
+              [nzValue]="cat.id"
+              [nzLabel]="cat.name"
+            ></nz-option>
+          </nz-select>
+        </div>
+        <nz-form-explain
+          *ngIf="
+            validateForm.get('category')?.dirty &&
+            validateForm.get('category')?.errors
+          "
+        >
+          <span>请选择分类!</span>
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
@@ -20,8 +46,11 @@
       <nz-form-control>
         <textarea nz-input formControlName="abstract" class="w-450"></textarea>
         <nz-form-explain
-          *ngIf="validateForm.get('abstract')?.dirty &&
-          validateForm.get('abstract')?.errors">
+          *ngIf="
+            validateForm.get('abstract')?.dirty &&
+            validateForm.get('abstract')?.errors
+          "
+        >
           <span>请输入摘要!</span>
         </nz-form-explain>
       </nz-form-control>
@@ -29,10 +58,17 @@
     <nz-form-item>
       <nz-form-label>内容</nz-form-label>
       <nz-form-control>
-        <app-md-editor mdId="md" #mdEditor formControlName="content"></app-md-editor>
+        <app-md-editor
+          mdId="md"
+          #mdEditor
+          formControlName="content"
+        ></app-md-editor>
         <nz-form-explain
-          *ngIf="validateForm.get('content')?.dirty &&
-          validateForm.get('content')?.errors">
+          *ngIf="
+            validateForm.get('content')?.dirty &&
+            validateForm.get('content')?.errors
+          "
+        >
           <span>请输入内容!</span>
         </nz-form-explain>
       </nz-form-control>
@@ -43,13 +79,11 @@
           class="mr-10"
           nz-button
           [nzLoading]="isLoading"
-          nzType="primary">
+          nzType="primary"
+        >
           保存
         </button>
-        <button
-          nz-button
-          type="reset"
-          nzType="default">
+        <button nz-button type="reset" nzType="default">
           重置
         </button>
       </nz-form-control>

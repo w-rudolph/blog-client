@@ -11,10 +11,14 @@ import { tap, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class HttpCustomInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let resCode = 0;
-    return next.handle(req).pipe(
+    // 调试用
+    const key = 'accesstoken';
+    const totken = localStorage.getItem('ACCESSTOKEN');
+    const newReq = req.clone({ params: req.params.set(key, totken) });
+    return next.handle(newReq).pipe(
       tap(
         (event: any) => {
           if (event instanceof HttpResponse) {

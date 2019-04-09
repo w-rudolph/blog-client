@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private $msg: NzMessageService
-  ) {}
+  ) { }
 
   ngOnInit() {
     const remember = Boolean(localStorage.getItem('LOGIN_REMEMBER'));
@@ -59,7 +59,8 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe(() => {
+      .subscribe(ret => {
+        localStorage.setItem('ACCESSTOKEN', ret.data.accessToken);
         this.router.navigateByUrl('/admin', { replaceUrl: true });
       });
   }

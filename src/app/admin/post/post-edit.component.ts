@@ -1,3 +1,4 @@
+import { CategoryService } from './../../services/category.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { PostService } from './../../services/post.service';
 import { EditorMDComponent } from './../../components/editor/editor-md.component';
@@ -16,17 +17,20 @@ export class PostEditComponent implements OnInit {
   postId: number;
   isLoading = false;
   validateForm: FormGroup;
+  catList = [];
 
   constructor(
     private fb: FormBuilder,
     private postService: PostService,
     private $msg: NzMessageService,
-    private router: ActivatedRoute
-  ) {}
+    private router: ActivatedRoute,
+    private catService: CategoryService,
+  ) { }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
       title: ['', [Validators.required]],
+      category: ['', [Validators.required]],
       abstract: ['', [Validators.required]],
       content: ['', [Validators.required]]
     });
@@ -36,6 +40,13 @@ export class PostEditComponent implements OnInit {
         this.getPostDetail(this.postId);
       }
     });
+    this.getCategoryList();
+  }
+
+  getCategoryList() {
+    this.catService.getCategoryList().subscribe(ret => {
+      this.catList = ret.data;
+    })
   }
 
   submitForm() {
@@ -67,9 +78,10 @@ export class PostEditComponent implements OnInit {
 
   getPostDetail(postId: number) {
     this.postService.getPostDetail(postId).subscribe((ret: any) => {
-      const { title, content, abstract } = ret.data;
+      const { title, content, abstract, category = '' } = ret.data;
       this.validateForm.setValue({
         title,
+        category,
         abstract,
         content
       });
