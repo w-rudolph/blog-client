@@ -5,7 +5,7 @@
         <li
           class="menu-item"
           routerLinkActive="ant-menu-item-selected"
-          [routerLinkActiveOptions]="{exact: true}"
+          [routerLinkActiveOptions]="{ exact: true }"
           nz-menu-item
           routerLink="/"
         >
@@ -14,7 +14,7 @@
         <li
           class="menu-item"
           routerLinkActive="ant-menu-item-selected"
-          [routerLinkActiveOptions]="{exact: true}"
+          [routerLinkActiveOptions]="{ exact: true }"
           nz-menu-item
           *ngFor="let cat of catList"
           [routerLink]="['/category', cat.id]"
@@ -22,6 +22,28 @@
           {{ cat.name }}
         </li>
       </ul>
+      <div class="account-actions">
+        <ng-container *ngIf="!userInfo.id">
+          <a routerLink="/login" class="mr-10">登录</a>
+          <a routerLink="/register">注册</a>
+        </ng-container>
+        <ng-container *ngIf="userInfo.id">
+          <nz-dropdown>
+            <a nz-dropdown>
+              <span>{{ userInfo.name }}</span>
+              <i nz-icon type="down"></i>
+            </a>
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>
+                <a (click)="onSignOff()">退出登录</a>
+              </li>
+              <li nz-menu-item>
+                <a routerLink="/admin/profile">我的账号</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+        </ng-container>
+      </div>
     </nz-header>
     <nz-layout id="main">
       <nz-content><router-outlet></router-outlet></nz-content>
@@ -36,3 +58,4 @@
 <div *ngIf="isSingleView">
   <router-outlet></router-outlet>
 </div>
+<nz-back-top></nz-back-top>

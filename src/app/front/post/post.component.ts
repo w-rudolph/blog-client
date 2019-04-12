@@ -10,6 +10,10 @@ import { Unsubscribable } from 'rxjs';
 export class PostComponent implements OnInit, OnDestroy {
   postList = [];
   sub$: Unsubscribable;
+  pageTotal = 0;
+  pageIndex = 1;
+  pageSize = 20;
+  categoryId = null;
   constructor(
     private postService: PostService,
     private activeRoute: ActivatedRoute,
@@ -17,13 +21,23 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub$ = this.activeRoute.params.subscribe((params: any) => {
-      this.getPostList(params.id);
+      this.categoryId = params.id;
+      this.getPostList({ catId: params.id });
     });
   }
 
-  getPostList(catId: number) {
-    this.postService.getPostSimpleList(catId).subscribe((ret: any) => {
+  getPostList(params: { catId?: number, limit?: number, offset?: number }) {
+    this.postService.getPostSimpleList(params).subscribe((ret: any) => {
       this.postList = ret.data.rows;
+      this.pageTotal = ret.data.total;
+    });
+  }
+
+  onPageChange() {
+    this.getPostList({
+      catId: this.categoryId,
+      limit: this.pageSize,
+      offset: (this.pageIndex - 1) * this.pageSize
     });
   }
 

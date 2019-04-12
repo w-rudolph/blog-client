@@ -38,6 +38,7 @@ export class AdminComponent implements OnInit {
     switch (type) {
       case 'logout':
         this.userService.postLogout().subscribe(() => {
+          localStorage.removeItem('ACCESSTOKEN');
           this.router.navigateByUrl('/login');
         });
         break;

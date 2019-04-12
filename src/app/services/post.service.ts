@@ -20,8 +20,8 @@ export class PostService {
     return this.http$.get(usePostApi('simple-detail'), { postId });
   }
 
-  getPostSimpleList(catId?: number) {
-    return this.http$.get(usePostApi('simple-list'), { catId });
+  getPostSimpleList(params: { catId?: number, limit?: number, offset?: number }) {
+    return this.http$.get(usePostApi('simple-list'),  params);
   }
 
   savePost(params: {

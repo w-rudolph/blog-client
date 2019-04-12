@@ -1,4 +1,5 @@
 import { CategoryService } from './../services/category.service';
+import { UserService } from './../services/user.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -14,11 +15,13 @@ export class FrontComponent implements OnInit, OnDestroy {
   isSingleView = false;
   routerSub$: Subscription;
   catList = [];
+  userInfo: any = {};
 
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private catService: CategoryService
+    private catService: CategoryService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -30,6 +33,19 @@ export class FrontComponent implements OnInit, OnDestroy {
       });
     this.catService.getCategorySimpleList().subscribe(ret => {
       this.catList = (ret.data as any[]).sort((a, b) => a.sort - b.sort);
+    });
+    this.userService.getUserInfo().subscribe((ret: any) => {
+      if (ret.code !== 0) {
+        return;
+      }
+      this.userInfo = ret.data || {};
+    });
+  }
+
+  onSignOff() {
+    this.userService.postLogout().subscribe(() => {
+      localStorage.removeItem('ACCESSTOKEN');
+      location.reload();
     });
   }
 

@@ -1,13 +1,21 @@
 <div class="posts">
   <div class="post-item" *ngFor="let post of postList">
-    <div class="post-title">{{post.title}}</div>
-    <div class="post-abstract">{{post.abstract}}</div>
+    <div class="post-title">{{ post.title }}</div>
+    <div class="post-abstract">{{ post.abstract }}</div>
     <div class="post-footer">
-      <div
-        class="f-left"
-        [title]="post.createAt | date:'yyyy:MM:dd HH:mm'">
-        <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
-        <span>&nbsp;{{post.createAt | timeago}}</span>
+      <div class="f-left">
+        <span [title]="post.createAt | date: 'yyyy:MM:dd HH:mm'">
+          <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
+          <span class="pl-5">{{ post.createAt | timeago }}</span>
+        </span>
+        <span class="ml-10">
+          <i nz-icon nzType="folder" nzTheme="outline"></i>
+          <span class="pl-5">{{ post.categoryName }}</span>
+        </span>
+        <span class="ml-10">
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <span class="pl-5">{{ post.authorName }}</span>
+          </span>
       </div>
       <div class="f-right">
         <a [routerLink]="['/post', post.id]">
@@ -17,4 +25,13 @@
       </div>
     </div>
   </div>
+  <div class="post-item t-center" *ngIf="postList.length === 0">
+    <span class="f-20">暂无数据！</span>
+  </div>
+  <nz-pagination
+    ([nzPageIndex])="(pageIndex)"
+    [nzTotal]="pageTotal"
+    ([nzPageSize])="(pageSize)"
+    (nzPageIndexChange)="onPageChange($event)"
+  ></nz-pagination>
 </div>
