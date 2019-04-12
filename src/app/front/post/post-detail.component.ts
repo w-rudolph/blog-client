@@ -25,7 +25,7 @@ export class PostDetailComponent implements OnInit {
     if (!postId) {
       return;
     }
-    this.postService.getPostDetail(postId).subscribe((ret: any) => {
+    this.postService.getPostSimpleDetail(postId).subscribe((ret: any) => {
       this.postDetail = ret.data;
     });
   }

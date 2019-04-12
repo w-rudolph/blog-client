@@ -17,11 +17,11 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub$ = this.activeRoute.params.subscribe((params: any) => {
-      this.getCategoryList(params.id);
+      this.getPostList(params.id);
     });
   }
 
-  getCategoryList(catId: number) {
+  getPostList(catId: number) {
     this.postService.getPostSimpleList(catId).subscribe((ret: any) => {
       this.postList = ret.data.rows;
     });
