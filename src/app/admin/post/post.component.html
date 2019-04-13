@@ -17,7 +17,7 @@
         <td>{{ data.title }}</td>
         <td>{{ data.abstract }}</td>
         <td>
-          <nz-tag [nzColor]="'blue'">
+          <nz-tag [nzColor]="getPostStatusColor(data.status)">
             {{ getPostStatusName(data.status) }}
           </nz-tag>
         </td>

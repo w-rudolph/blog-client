@@ -50,6 +50,10 @@ export class PostComponent implements OnInit {
     return PostStatusMap[status];
   }
 
+  getPostStatusColor(status: PostStatus) {
+    return status === PostStatus.DELETED ? 'red' : 'blue';
+  }
+
   onPublish(postId: number) {
     this.postService.publishPost(postId).subscribe(() => {
       this.getPostList();
