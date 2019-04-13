@@ -4,14 +4,14 @@ import { Component, OnInit } from '@angular/core';
 
 enum PostStatus {
   DRAFT = 0,
-  FINISHED = 1,
+  PUBLISHED = 1,
   DELETED = -1
 }
 
 const PostStatusMap = {
   [PostStatus.DELETED]: '已删除',
   [PostStatus.DRAFT]: '草稿',
-  [PostStatus.FINISHED]: '已发布'
+  [PostStatus.PUBLISHED]: '已发布'
 };
 
 @Component({

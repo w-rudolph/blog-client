@@ -33,22 +33,33 @@
         <td>{{ data.createAt | date: 'yyyy:MM:dd HH:mm' }}</td>
         <td>{{ data.updateAt | date: 'yyyy:MM:dd HH:mm' }}</td>
         <td>
-          <button nz-button (click)="onOpenEdit(data)">编辑</button>
-          <span>&nbsp;&nbsp;</span>
+          <button nz-button nzSize="small" (click)="onOpenEdit(data)">
+            编辑
+          </button>
+          <span>&nbsp;</span>
+          <ng-container *ngIf="showPublishBtn(data.status)">
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              nz-popconfirm
+              nzTitle="确认要发布吗?"
+              (nzOnConfirm)="onPublishCategory(data.id)"
+            >
+              发布
+            </button>
+            <span>&nbsp;</span>
+          </ng-container>
           <button
-            *ngIf="categoryStatus.DEFAULT === data.status"
+            *ngIf="showDeleteBtn(data.status)"
             nz-button
+            nzSize="small"
             nzType="danger"
-            (click)="onUpdateCategoryStatus(data, categoryStatus.DELETED)"
+            nz-popconfirm
+            nzTitle="确认要删除吗?"
+            (nzOnConfirm)="onDeleteCategory(data.id)"
           >
             删除
-          </button>
-          <button
-            *ngIf="categoryStatus.DELETED === data.status"
-            nz-button
-            (click)="onUpdateCategoryStatus(data, categoryStatus.DEFAULT)"
-          >
-            设置正常
           </button>
         </td>
       </tr>
@@ -105,22 +116,21 @@
         </div>
       </nz-form-item>
       <nz-form-item>
-          <nz-form-label>排序</nz-form-label>
-          <nz-form-control>
-            <nz-input-number nzMin="1" formControlName="sort"></nz-input-number>
-          </nz-form-control>
-          <div
-            class="has-error"
-            *ngIf="
-              validateForm.get('sort')?.dirty &&
-              validateForm.get('sort')?.errors
-            "
-          >
-            <nz-form-explain>
-              <span>请输入排序值!</span>
-            </nz-form-explain>
-          </div>
-        </nz-form-item>
+        <nz-form-label>排序</nz-form-label>
+        <nz-form-control>
+          <nz-input-number nzMin="1" formControlName="sort"></nz-input-number>
+        </nz-form-control>
+        <div
+          class="has-error"
+          *ngIf="
+            validateForm.get('sort')?.dirty && validateForm.get('sort')?.errors
+          "
+        >
+          <nz-form-explain>
+            <span>请输入排序值!</span>
+          </nz-form-explain>
+        </div>
+      </nz-form-item>
     </form>
     <ng-template #modalFooter>
       <button nz-button nzType="default" (click)="onCancelEdit()">

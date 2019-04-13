@@ -5,13 +5,15 @@ import { finalize } from 'rxjs/operators';
 import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 
 enum CategoryStatus {
-  DEFAULT = 0,
+  DRAFT = 0,
+  PUBLISHED = 1,
   DELETED = -1
 }
 
 const CategoryStatusMap = {
   [CategoryStatus.DELETED]: '已删除',
-  [CategoryStatus.DEFAULT]: '正常'
+  [CategoryStatus.PUBLISHED]: '已发布',
+  [CategoryStatus.DRAFT]: '草稿'
 };
 
 @Component({
@@ -55,7 +57,7 @@ export class CategoryComponent implements OnInit {
   }
 
   getCategoryStatusColor(status: number) {
-    return status === CategoryStatus.DEFAULT ? 'blue' : 'red';
+    return status === CategoryStatus.DELETED ? 'red' : 'blue';
   }
 
   onOpenEdit(row: any = {}) {
@@ -97,28 +99,27 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  onUpdateCategoryStatus(data: any, status: number) {
-    const modalContent = status === CategoryStatus.DELETED ?
-      `确认要删除分类【${data.name}】吗？` :
-      `确认要把分类【${data.name}】设置为正常吗？`;
-    const modal = this.$modal.confirm({
-      nzTitle: '提示',
-      nzContent: modalContent,
-      nzOkLoading: this.isSaving,
-      nzOnOk: () => {
-        this.isSaving = true;
-        this.catService.updateCategoryStatus(data.id, status)
-          .pipe(
-            finalize(() => {
-              this.isSaving = false;
-            })
-          )
-          .subscribe(() => {
-            this.$msg.success('操作成功！');
-            this.getCategoryList();
-            modal.destroy();
-          });
-      }
-    });
+  updateCategoryStatus(catId: number, status: number) {
+    this.catService.updateCategoryStatus(catId, status)
+      .subscribe(() => {
+        this.$msg.success('操作成功！');
+        this.getCategoryList();
+      });
+  }
+
+  showPublishBtn(status: number) {
+    return status === CategoryStatus.DRAFT;
+  }
+
+  showDeleteBtn(status: number) {
+    return status !== CategoryStatus.DELETED;
+  }
+
+  onPublishCategory(catId: number) {
+    this.updateCategoryStatus(catId, CategoryStatus.PUBLISHED);
+  }
+
+  onDeleteCategory(catId: number) {
+    this.updateCategoryStatus(catId, CategoryStatus.DELETED);
   }
 }
