@@ -26,10 +26,36 @@
         <td>
           <button
             nz-button
+            nzSize="small"
             routerLink="/admin/post/edit"
             [queryParams]="{ id: data.id }"
           >
             编辑
+          </button>
+          <span>&nbsp;</span>
+          <ng-container *ngIf="showPublishBtn(data.status)">
+            <button
+              nz-button
+              nzSize="small"
+              nzType="primary"
+              nz-popconfirm
+              nzTitle="确认要发布吗?"
+              (nzOnConfirm)="onPublish(data.id)"
+            >
+              发布
+            </button>
+            <span>&nbsp;</span>
+          </ng-container>
+          <button
+            *ngIf="showDeleteBtn(data.status)"
+            nz-button
+            nzSize="small"
+            nzType="danger"
+            nz-popconfirm
+            nzTitle="确认要删除吗?"
+            (nzOnConfirm)="onDelete(data.id)"
+          >
+            删除
           </button>
         </td>
       </tr>

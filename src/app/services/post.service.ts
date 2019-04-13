@@ -21,7 +21,7 @@ export class PostService {
   }
 
   getPostSimpleList(params: { catId?: number, limit?: number, offset?: number }) {
-    return this.http$.get(usePostApi('simple-list'),  params);
+    return this.http$.get(usePostApi('simple-list'), params);
   }
 
   savePost(params: {
@@ -34,7 +34,11 @@ export class PostService {
     return this.http$.post(usePostApi('save'), params);
   }
 
-  deletePost(params: { postId: number }) {
-    return this.http$.post(usePostApi('delete'), params);
+  deletePost(postId: number) {
+    return this.http$.post(usePostApi('delete'), { postId });
+  }
+
+  publishPost(postId: number) {
+    return this.http$.post(usePostApi('publish'), { postId });
   }
 }

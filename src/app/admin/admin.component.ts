@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getUserInfo().subscribe((ret: any) => {
+    this.userService.getUserDetail().subscribe((ret: any) => {
       if (ret.code !== 0) {
         return;
       }

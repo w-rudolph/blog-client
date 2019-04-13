@@ -4,9 +4,9 @@
     <div class="post-abstract">{{ post.abstract }}</div>
     <div class="post-footer">
       <div class="f-left">
-        <span [title]="post.createAt | date: 'yyyy:MM:dd HH:mm'">
+        <span [title]="post.updateAt | date: 'yyyy:MM:dd HH:mm'">
           <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
-          <span class="pl-5">{{ post.createAt | timeago }}</span>
+          <span class="pl-5">{{ post.updateAt | timeago }}</span>
         </span>
         <span class="ml-10">
           <i nz-icon nzType="folder" nzTheme="outline"></i>

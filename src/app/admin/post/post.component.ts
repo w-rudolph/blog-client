@@ -22,11 +22,24 @@ const PostStatusMap = {
 export class PostComponent implements OnInit {
   postList: any[] = [];
   total = 0;
+  postStatus = PostStatus;
   constructor(
     private postService: PostService,
     private $msg: NzMessageService
-  ) {}
+  ) { }
   ngOnInit() {
+    this.getPostList();
+  }
+
+  showPublishBtn(status: number) {
+    return status === PostStatus.DRAFT;
+  }
+
+  showDeleteBtn(status: number) {
+    return status !== PostStatus.DELETED;
+  }
+
+  getPostList() {
     this.postService.getPostList().subscribe((ret: any) => {
       this.postList = ret.data.rows;
       this.total = ret.data.total;
@@ -35,5 +48,19 @@ export class PostComponent implements OnInit {
 
   getPostStatusName(status: PostStatus) {
     return PostStatusMap[status];
+  }
+
+  onPublish(postId: number) {
+    this.postService.publishPost(postId).subscribe(() => {
+      this.getPostList();
+      this.$msg.success('操作成功！');
+    });
+  }
+
+  onDelete(postId: number) {
+    this.postService.deletePost(postId).subscribe(() => {
+      this.getPostList();
+      this.$msg.success('操作成功！');
+    });
   }
 }

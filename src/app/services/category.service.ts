@@ -13,7 +13,7 @@ export class CategoryService {
   }
 
   getCategorySimpleList() {
-    return this.http$.get(useCategoryApi('list-simple'));
+    return this.http$.get(useCategoryApi('simple-list'));
   }
 
   getCategoryDetail(catId: number) {

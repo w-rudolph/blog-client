@@ -16,6 +16,10 @@ export class UserService {
     return this.http$.get(useUserApi('info'));
   }
 
+  getUserDetail() {
+    return this.http$.get(useUserApi('detail'));
+  }
+
   postLogin(params: { name: string; password: string }) {
     return this.http$.post(useUserApi('login'), params);
   }
