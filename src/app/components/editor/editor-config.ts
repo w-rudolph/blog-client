@@ -15,6 +15,7 @@ export class EditorConfig {
   public saveHTMLToTextarea = true;
   public markdown = '';
   public flowChart = true;
+  public htmlDecode = 'style,script,iframe';
   public syncScrolling = true;
   public sequenceDiagram = true;
   public imageUpload = true;
