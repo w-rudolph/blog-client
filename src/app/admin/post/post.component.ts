@@ -14,6 +14,12 @@ const PostStatusMap = {
   [PostStatus.PUBLISHED]: '已发布'
 };
 
+const PostStatusColor = {
+  [PostStatus.DELETED]: 'red',
+  [PostStatus.DRAFT]: 'green',
+  [PostStatus.PUBLISHED]: 'blue'
+};
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -28,7 +34,7 @@ export class PostComponent implements OnInit {
   constructor(
     private postService: PostService,
     private $msg: NzMessageService
-  ) { }
+  ) {}
   ngOnInit() {
     this.getPostList();
   }
@@ -42,13 +48,15 @@ export class PostComponent implements OnInit {
   }
 
   getPostList() {
-    this.postService.getPostList({
-      limit: this.pageSize,
-      offset: this.pageSize * (this.pageIndex - 1)
-    }).subscribe((ret: any) => {
-      this.postList = ret.data.rows;
-      this.total = ret.data.total;
-    });
+    this.postService
+      .getPostList({
+        limit: this.pageSize,
+        offset: this.pageSize * (this.pageIndex - 1)
+      })
+      .subscribe((ret: any) => {
+        this.postList = ret.data.rows;
+        this.total = ret.data.total;
+      });
   }
 
   getPostStatusName(status: PostStatus) {
@@ -56,7 +64,7 @@ export class PostComponent implements OnInit {
   }
 
   getPostStatusColor(status: PostStatus) {
-    return status === PostStatus.DELETED ? 'red' : 'blue';
+    return PostStatusColor[status];
   }
 
   onPublish(postId: number) {

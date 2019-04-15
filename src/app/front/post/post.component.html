@@ -30,8 +30,7 @@
   </div>
   <nz-pagination
     *ngIf="postList.length > 0"
-    [nzFrontPagination]="false"
-    [(nzPageIndex]="pageIndex"
+    [(nzPageIndex)]="pageIndex"
     [nzTotal]="pageTotal"
     [nzPageSize]="pageSize"
     (nzPageIndexChange)="onPageChange($event)"
