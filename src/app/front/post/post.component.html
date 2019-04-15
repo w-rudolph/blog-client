@@ -29,9 +29,11 @@
     <span class="f-20">暂无数据！</span>
   </div>
   <nz-pagination
-    ([nzPageIndex])="(pageIndex)"
+    *ngIf="postList.length > 0"
+    [nzFrontPagination]="false"
+    [(nzPageIndex]="pageIndex"
     [nzTotal]="pageTotal"
-    ([nzPageSize])="(pageSize)"
+    [nzPageSize]="pageSize"
     (nzPageIndexChange)="onPageChange($event)"
   ></nz-pagination>
 </div>

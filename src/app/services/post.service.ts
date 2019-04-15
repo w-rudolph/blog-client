@@ -6,21 +6,25 @@ import { usePostApi } from '../utils/base-api';
   providedIn: 'root'
 })
 export class PostService {
-  constructor(private http$: HttpService) { }
+  constructor(private http$: HttpService) {}
 
   getPostDetail(postId: number) {
     return this.http$.get(usePostApi('detail'), { postId });
   }
 
-  getPostList() {
-    return this.http$.get(usePostApi('list'));
+  getPostList(params: { limit?: number; offset?: number }) {
+    return this.http$.get(usePostApi('list'), params);
   }
 
   getPostSimpleDetail(postId: number) {
     return this.http$.get(usePostApi('simple-detail'), { postId });
   }
 
-  getPostSimpleList(params: { catId?: number, limit?: number, offset?: number }) {
+  getPostSimpleList(params: {
+    catId?: number;
+    limit?: number;
+    offset?: number;
+  }) {
     return this.http$.get(usePostApi('simple-list'), params);
   }
 

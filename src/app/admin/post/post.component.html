@@ -1,5 +1,14 @@
 <div>
-  <nz-table #basicTable nzBordered [nzData]="postList" [nzTotal]="total">
+  <nz-table
+    #basicTable
+    nzBordered
+    [nzFrontPagination]="false"
+    [nzData]="postList"
+    [nzTotal]="total"
+    [(nzPageIndex)]="pageIndex"
+    [nzPageSize]="pageSize"
+    (nzPageIndexChange)="getPostList()"
+  >
     <thead>
       <tr>
         <th>ID</th>

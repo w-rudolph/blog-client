@@ -22,6 +22,8 @@ const PostStatusMap = {
 export class PostComponent implements OnInit {
   postList: any[] = [];
   total = 0;
+  pageIndex = 1;
+  pageSize = 20;
   postStatus = PostStatus;
   constructor(
     private postService: PostService,
@@ -40,7 +42,10 @@ export class PostComponent implements OnInit {
   }
 
   getPostList() {
-    this.postService.getPostList().subscribe((ret: any) => {
+    this.postService.getPostList({
+      limit: this.pageSize,
+      offset: this.pageSize * (this.pageIndex - 1)
+    }).subscribe((ret: any) => {
       this.postList = ret.data.rows;
       this.total = ret.data.total;
     });

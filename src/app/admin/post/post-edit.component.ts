@@ -2,30 +2,33 @@ import { CategoryService } from './../../services/category.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { PostService } from './../../services/post.service';
 import { EditorMDComponent } from './../../components/editor/editor-md.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.scss']
 })
-export class PostEditComponent implements OnInit {
+export class PostEditComponent implements OnInit, OnDestroy {
   @ViewChild('mdEditor') mdEditor: EditorMDComponent;
   postId: number;
   isLoading = false;
   validateForm: FormGroup;
   catList = [];
+  unsub$: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private postService: PostService,
     private $msg: NzMessageService,
-    private router: ActivatedRoute,
-    private catService: CategoryService,
-  ) { }
+    private activeRouter: ActivatedRoute,
+    private router: Router,
+    private catService: CategoryService
+  ) {}
 
   ngOnInit() {
     this.validateForm = this.fb.group({
@@ -34,7 +37,7 @@ export class PostEditComponent implements OnInit {
       abstract: ['', [Validators.required]],
       content: ['', [Validators.required]]
     });
-    this.router.queryParams.subscribe(params => {
+    this.unsub$ = this.activeRouter.queryParams.subscribe(params => {
       this.postId = params.id;
       if (this.postId) {
         this.getPostDetail(this.postId);
@@ -43,10 +46,14 @@ export class PostEditComponent implements OnInit {
     this.getCategoryList();
   }
 
+  ngOnDestroy() {
+    this.unsub$.unsubscribe();
+  }
+
   getCategoryList() {
     this.catService.getCategoryList().subscribe(ret => {
       this.catList = ret.data;
-    })
+    });
   }
 
   submitForm() {
@@ -71,8 +78,11 @@ export class PostEditComponent implements OnInit {
           this.isLoading = false;
         })
       )
-      .subscribe(() => {
+      .subscribe(ret => {
         this.$msg.success('操作成功！');
+        if (!this.postId) {
+          this.router.navigateByUrl('/admin/post/edit?id=' + ret.data.id);
+        }
       });
   }
 
