@@ -167,10 +167,7 @@ $c-list: $primary, $success, $info, $danger, $warning;
   font-weight: bold;
 }
 
-.router-active {
+.router-active,
+.router-active:not(.ant-menu-item-selected) {
   color: $blue;
-}
-
-.ant-menu-dark .router-active {
-  color: $white;
 }
