@@ -11,7 +11,7 @@ import { tap, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class HttpCustomInterceptor implements HttpInterceptor {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let resCode = 0;
     // 调试用
@@ -33,8 +33,10 @@ export class HttpCustomInterceptor implements HttpInterceptor {
       ),
       finalize(() => {
         // 未授权
-        if (resCode === 401) {
-          this.router.navigateByUrl('/login');
+        if (resCode === 401 && this.router.url.indexOf('/login') !== 0) {
+          this.router.navigate(['/login'], {
+            queryParams: { returnUrl: this.router.url }
+          });
         }
       })
     );

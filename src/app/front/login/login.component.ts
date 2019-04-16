@@ -1,6 +1,6 @@
 import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { md5 } from '../../utils/md5';
@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private $msg: NzMessageService
-  ) { }
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     const remember = Boolean(localStorage.getItem('LOGIN_REMEMBER'));
@@ -61,7 +61,8 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(ret => {
         localStorage.setItem('ACCESSTOKEN', ret.data.accessToken);
-        this.router.navigateByUrl('/admin', { replaceUrl: true });
+        const returnUrl = this.activeRoute.snapshot.queryParams.returnUrl;
+        this.router.navigateByUrl(returnUrl, { replaceUrl: true });
       });
   }
 }
