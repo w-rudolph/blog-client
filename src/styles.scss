@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/ng-zorro-antd/ng-zorro-antd.css";
+@import '../node_modules/ng-zorro-antd/ng-zorro-antd.css';
 $white: #ffffff;
 $blue: #007bff;
 $red: #dc3545;
@@ -165,4 +165,12 @@ $c-list: $primary, $success, $info, $danger, $warning;
 
 .font-weight-bold {
   font-weight: bold;
+}
+
+.router-active {
+  color: $blue;
+}
+
+.ant-menu-dark .router-active {
+  color: $white;
 }

@@ -4,7 +4,7 @@
       <ul nz-menu nzMode="horizontal">
         <li
           class="menu-item"
-          routerLinkActive="ant-menu-item-selected"
+          routerLinkActive="router-active"
           [routerLinkActiveOptions]="{ exact: true }"
           nz-menu-item
           routerLink="/"
@@ -13,7 +13,7 @@
         </li>
         <li
           class="menu-item"
-          routerLinkActive="ant-menu-item-selected"
+          routerLinkActive="router-active"
           [routerLinkActiveOptions]="{ exact: true }"
           nz-menu-item
           *ngFor="let cat of catList"
@@ -30,7 +30,7 @@
         <ng-container *ngIf="userInfo.id">
           <nz-dropdown>
             <a nz-dropdown>
-              <span>{{ userInfo.name }}</span>
+              <span class="f-16">{{ userInfo.name }}</span>
               <i nz-icon type="down"></i>
             </a>
             <ul nz-menu nzSelectable>
