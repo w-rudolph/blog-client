@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostService } from './../../services/post.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Unsubscribable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -14,10 +15,11 @@ export class PostComponent implements OnInit, OnDestroy {
   pageIndex = 1;
   pageSize = 20;
   categoryId = null;
+  isLoading = true;
   constructor(
     private postService: PostService,
-    private activeRoute: ActivatedRoute,
-  ) { }
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.sub$ = this.activeRoute.params.subscribe((params: any) => {
@@ -26,11 +28,19 @@ export class PostComponent implements OnInit, OnDestroy {
     });
   }
 
-  getPostList(params: { catId?: number, limit?: number, offset?: number }) {
-    this.postService.getPostSimpleList(params).subscribe((ret: any) => {
-      this.postList = ret.data.rows;
-      this.pageTotal = ret.data.total;
-    });
+  getPostList(params: { catId?: number; limit?: number; offset?: number }) {
+    this.isLoading = true;
+    this.postService
+      .getPostSimpleList(params)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((ret: any) => {
+        this.postList = ret.data.rows;
+        this.pageTotal = ret.data.total;
+      });
   }
 
   onPageChange() {

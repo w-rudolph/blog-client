@@ -28,3 +28,17 @@
     margin-left: 10px;
   }
 }
+
+@media (max-width: 414px) {
+  #main {
+    width: 95%;
+  }
+  #main .aside,
+  .account-actions {
+    display: none;
+  }
+  #header {
+    padding: 0;
+    overflow: auto;
+  }
+}

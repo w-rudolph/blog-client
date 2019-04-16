@@ -1,5 +1,8 @@
 <div class="post-detail">
-  <div
-    class="markdown-body editormd-preview-container"
-    [innerHTML]="postDetail.preview | sanitizeHtml"></div>
+  <nz-spin [nzTip]="'Loading...'" [nzSpinning]="isLoadinfg">
+    <div
+      class="post-body"
+      [innerHTML]="postDetail.preview | sanitizeHtml"
+    ></div>
+  </nz-spin>
 </div>
