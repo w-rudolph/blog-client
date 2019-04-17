@@ -61,7 +61,7 @@ export class HttpService {
         if (showErrMsg) {
           let errMsg = '';
           if (err instanceof HttpErrorResponse) {
-            errMsg = err.error.message;
+            errMsg = err.error.message || '请求失败！';
           } else {
             errMsg = err.message;
           }
