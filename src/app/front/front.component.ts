@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./front.component.scss']
 })
 export class FrontComponent implements OnInit, OnDestroy {
-
   isSingleView = false;
   routerSub$: Subscription;
   catList = [];
@@ -22,7 +21,7 @@ export class FrontComponent implements OnInit, OnDestroy {
     private router: Router,
     private catService: CategoryService,
     private userService: UserService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.isSingleView = this.getPageType();
@@ -59,6 +58,8 @@ export class FrontComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.routerSub$.unsubscribe();
+    if (this.routerSub$) {
+      this.routerSub$.unsubscribe();
+    }
   }
 }

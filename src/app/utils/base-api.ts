@@ -16,3 +16,9 @@ export const useCategoryApi = (action: string) => `${basePath}/admin/category/${
  * 文章接口
  */
 export const usePostApi = (action: string) => `${basePath}/admin/post/${action}`;
+
+/**
+ * 文章评论接口
+ */
+export const useCommentApi = (action: string) => `${basePath}/admin/comment/${action}`;
+

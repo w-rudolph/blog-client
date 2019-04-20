@@ -11,6 +11,8 @@ import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post/post-detail.component';
 import { SanitizeHtmlPipe } from '../pipes/santitizeHtml.pipe';
 import { TimeagoPipe } from './../pipes/timeago.pipe';
+import { PostCommentComponent } from './post/post-comment.component';
+import { CommentComponent } from '../components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TimeagoPipe } from './../pipes/timeago.pipe';
     PostComponent,
     PostDetailComponent,
     SanitizeHtmlPipe,
-    TimeagoPipe
+    TimeagoPipe,
+    PostCommentComponent,
+    CommentComponent
   ],
   imports: [
     RouterModule.forChild([

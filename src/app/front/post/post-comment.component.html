@@ -1,0 +1,43 @@
+<div class="post-comments">
+  <div>
+    <app-comment
+      [isLoading]="isSubmit"
+      (submit)="onReplyComment($event, null)"
+    ></app-comment>
+  </div>
+  <hr />
+  <div class="post-comment-list">
+    <div class="post-comment-item" *ngFor="let item of commentList">
+      <div class="comment-header">
+        <span class="userName">{{ item.userName }}</span>
+        <span class="ml-10" [title]="item.createAt | date: 'yyyy:MM:dd HH:mm'">
+          <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
+          <span class="pl-5">{{ item.createAt | timeago }}</span>
+        </span>
+      </div>
+      <div class="comment-content">
+        <span *ngIf="item.toUserName" class="mr-10">
+          <span class="toUserName">@{{ item.toUserName }}</span>
+        </span>
+        <span>{{ item.content }}</span>
+      </div>
+      <div class="comment-footer t-right">
+        <button
+          nz-button
+          nzSize="small"
+          title="评论"
+          (click)="toggleComment(item)"
+        >
+          <i nz-icon nzType="message" nzTheme="outline"></i>
+        </button>
+      </div>
+      <div *ngIf="item.show" class="mt-10">
+        <app-comment
+          [isLoading]="item.isSubmit"
+          [placeholder]="'@' + item.userName"
+          (submit)="onReplyComment($event, item)"
+        ></app-comment>
+      </div>
+    </div>
+  </div>
+</div>

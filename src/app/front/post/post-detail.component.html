@@ -5,4 +5,5 @@
       [innerHTML]="postDetail.preview | sanitizeHtml"
     ></div>
   </nz-spin>
-</div>
+<nz-divider nzText="评论"></nz-divider>
+<app-post-comment [postId]="postDetail.id"></app-post-comment>

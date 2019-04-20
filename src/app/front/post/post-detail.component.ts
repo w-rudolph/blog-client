@@ -26,7 +26,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub$.unsubscribe();
+    if (this.sub$) {
+      this.sub$.unsubscribe();
+    }
   }
 
   getPostDetail(postId: number) {
@@ -34,11 +36,15 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       return;
     }
     this.isLoading = true;
-    this.postService.getPostSimpleDetail(postId)
-    .pipe(finalize(() => {
-      this.isLoading = false;
-    })).subscribe((ret: any) => {
-      this.postDetail = ret.data;
-    });
+    this.postService
+      .getPostSimpleDetail(postId)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((ret: any) => {
+        this.postDetail = ret.data;
+      });
   }
 }

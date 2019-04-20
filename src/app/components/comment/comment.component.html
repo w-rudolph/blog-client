@@ -1,0 +1,33 @@
+<form [formGroup]="validateForm" nz-form>
+  <nz-form-item>
+    <nz-form-control>
+      <textarea
+        nz-input
+        formControlName="content"
+        [placeholder]="placeholder"
+        [nzAutosize]="autoSize"
+      ></textarea>
+      <nz-form-explain
+        *ngIf="
+          validateForm.get('content')?.dirty &&
+          validateForm.get('content')?.errors
+        "
+      >
+        <span>{{ errorText }}</span>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <div class="t-right">
+      <button
+        type="button"
+        nz-button
+        nzType="primary"
+        (click)="submitForm()"
+        [nzLoading]="isLoading"
+      >
+        提交
+      </button>
+    </div>
+  </nz-form-item>
+</form>
