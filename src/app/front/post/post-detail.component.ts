@@ -44,7 +44,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((ret: any) => {
-        this.postDetail = ret.data;
+        this.postDetail = ret.data || {};
       });
   }
 }

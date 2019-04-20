@@ -1,9 +1,11 @@
 <div class="post-detail">
+  <app-page-title [title]="postDetail.title"></app-page-title>
   <nz-spin [nzTip]="'Loading...'" [nzSpinning]="isLoadinfg">
     <div
       class="post-body"
       [innerHTML]="postDetail.preview | sanitizeHtml"
     ></div>
   </nz-spin>
-<nz-divider nzText="评论"></nz-divider>
-<app-post-comment [postId]="postDetail.id"></app-post-comment>
+  <nz-divider nzText="评论"></nz-divider>
+  <app-post-comment [postId]="postDetail.id"></app-post-comment>
+</div>

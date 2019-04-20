@@ -13,6 +13,7 @@ import { SanitizeHtmlPipe } from '../pipes/santitizeHtml.pipe';
 import { TimeagoPipe } from './../pipes/timeago.pipe';
 import { PostCommentComponent } from './post/post-comment.component';
 import { CommentComponent } from '../components/comment/comment.component';
+import { PageTitleComponent } from '../components/page-title/page-title.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CommentComponent } from '../components/comment/comment.component';
     SanitizeHtmlPipe,
     TimeagoPipe,
     PostCommentComponent,
-    CommentComponent
+    CommentComponent,
+    PageTitleComponent,
   ],
   imports: [
     RouterModule.forChild([

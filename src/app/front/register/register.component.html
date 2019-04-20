@@ -1,4 +1,5 @@
 <div class="admin-register">
+  <app-page-title title="注册"></app-page-title>
   <div class="transform-center register-panel">
     <div class="font-weight-bold f-20 t-center pt-30">
       <span>账号注册</span>
@@ -12,11 +13,15 @@
                 nz-input
                 formControlName="userName"
                 autocomplete="off"
-                placeholder="用户名" />
+                placeholder="用户名"
+              />
             </nz-input-group>
             <nz-form-explain
-              *ngIf="validateForm.get('userName')?.dirty &&
-              validateForm.get('userName')?.errors">
+              *ngIf="
+                validateForm.get('userName')?.dirty &&
+                validateForm.get('userName')?.errors
+              "
+            >
               <span>请输入用户名!</span>
             </nz-form-explain>
           </nz-form-control>
@@ -29,11 +34,15 @@
                 formControlName="email"
                 autocomplete="off"
                 type="email"
-                placeholder="邮箱" />
+                placeholder="邮箱"
+              />
             </nz-input-group>
             <nz-form-explain
-              *ngIf="validateForm.get('email')?.dirty &&
-              validateForm.get('email')?.errors">
+              *ngIf="
+                validateForm.get('email')?.dirty &&
+                validateForm.get('email')?.errors
+              "
+            >
               <span>请输入正确的邮箱!</span>
             </nz-form-explain>
           </nz-form-control>
@@ -46,11 +55,15 @@
                 formControlName="password"
                 type="password"
                 autocomplete="new-password"
-                placeholder="密码" />
+                placeholder="密码"
+              />
             </nz-input-group>
             <nz-form-explain
-              *ngIf="validateForm.get('password')?.dirty &&
-              validateForm.get('password')?.errors">
+              *ngIf="
+                validateForm.get('password')?.dirty &&
+                validateForm.get('password')?.errors
+              "
+            >
               <span>请输入密码!</span>
             </nz-form-explain>
           </nz-form-control>
@@ -63,22 +76,22 @@
                 formControlName="repassword"
                 type="password"
                 autocomplete="new-password"
-                placeholder="确认密码" />
+                placeholder="确认密码"
+              />
             </nz-input-group>
             <nz-form-explain
-              *ngIf="validateForm.get('repassword')?.dirty &&
-              validateForm.get('repassword')?.errors">
+              *ngIf="
+                validateForm.get('repassword')?.dirty &&
+                validateForm.get('repassword')?.errors
+              "
+            >
               <span>请输入确认密码!</span>
             </nz-form-explain>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
           <nz-form-control>
-            <button
-              nz-button
-              nzBlock
-              [nzLoading]="isLoading"
-              nzType="primary">
+            <button nz-button nzBlock [nzLoading]="isLoading" nzType="primary">
               确定
             </button>
           </nz-form-control>
