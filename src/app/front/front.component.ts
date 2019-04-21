@@ -33,11 +33,9 @@ export class FrontComponent implements OnInit, OnDestroy {
     this.catService.getCategorySimpleList().subscribe(ret => {
       this.catList = (ret.data as any[]).sort((a, b) => a.sort - b.sort);
     });
-    this.userService.getUserInfo().subscribe((ret: any) => {
-      if (ret.code !== 0) {
-        return;
-      }
-      this.userInfo = ret.data || {};
+    this.userService.getUserInfo();
+    this.userService.info$.subscribe(data => {
+      this.userInfo = data || {};
     });
   }
 

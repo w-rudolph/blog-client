@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
       .subscribe(ret => {
         localStorage.setItem('ACCESSTOKEN', ret.data.accessToken);
         const returnUrl = this.activeRoute.snapshot.queryParams.returnUrl;
+        this.userService.getUserInfo();
         this.router.navigateByUrl(returnUrl, { replaceUrl: true });
       });
   }

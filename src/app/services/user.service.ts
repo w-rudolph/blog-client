@@ -8,16 +8,22 @@ import { useUserApi } from '../utils/base-api';
 })
 export class UserService {
   info$: BehaviorSubject<any>;
+  detail$: BehaviorSubject<any>;
   constructor(private http$: HttpService) {
     this.info$ = new BehaviorSubject({});
+    this.detail$ = new BehaviorSubject({});
   }
 
   getUserInfo() {
-    return this.http$.get(useUserApi('info'));
+    return this.http$.get(useUserApi('info')).subscribe(ret => {
+      this.info$.next(ret.data);
+    });
   }
 
   getUserDetail() {
-    return this.http$.get(useUserApi('detail'));
+    this.http$.get(useUserApi('detail')).subscribe(ret => {
+      this.detail$.next(ret.data);
+    });
   }
 
   postLogin(params: { name: string; password: string }) {
@@ -39,5 +45,17 @@ export class UserService {
 
   postLogout() {
     return this.http$.post(useUserApi('logout'));
+  }
+
+  postSave(params: { email: string; sex: number }) {
+    return this.http$.post(useUserApi('save'), params);
+  }
+
+  postUpdatePassword(params: {
+    oldpassword: string;
+    password: string;
+    repassword: string;
+  }) {
+    return this.http$.post(useUserApi('update-password'), params);
   }
 }

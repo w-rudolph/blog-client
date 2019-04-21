@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentService } from '../../services/comment.service';
 import { finalize } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-post-comment',
@@ -63,7 +64,6 @@ export class PostCommentComponent implements OnInit {
   }
 
   onReplyComment(content: string, comment: any) {
-    console.log(comment);
     if (comment) {
       comment.isSubmit = true;
     } else {

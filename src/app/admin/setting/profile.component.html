@@ -1,3 +1,54 @@
-<p>
-  profile works!
-</p>
+<div class="user-profile">
+  <div class="form-item">
+    <div class="form-label">用户ID:</div>
+    <div class="form-control">
+      <input nz-input [(ngModel)]="userDetail.id" name="id" disabled />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-label">用户名:</div>
+    <div class="form-control">
+      <input nz-input [(ngModel)]="userDetail.name" name="name" disabled />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-label">账户状态:</div>
+    <div class="form-control">
+      <input nz-input [value]="getAccountStatus(userDetail.status)" disabled />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-label">邮箱:</div>
+    <div class="form-control">
+      <input
+        name="email"
+        #name="ngModel"
+        nz-input
+        [(ngModel)]="userDetail.email"
+      />
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-label">性别:</div>
+    <div class="form-control">
+      <nz-select style="width:100%" [(ngModel)]="userDetail.sex" name="sex">
+        <nz-option [nzValue]="-1" nzLabel="未知"></nz-option>
+        <nz-option [nzValue]="1" nzLabel="女"></nz-option>
+        <nz-option [nzValue]="0" nzLabel="男"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <div class="form-item">
+    <div class="form-label"></div>
+    <div class="form-control t-right">
+      <button
+        nz-button
+        nzType="primary"
+        [nzLoading]="isLoading"
+        (click)="saveProfile()"
+      >
+        保存
+      </button>
+    </div>
+  </div>
+</div>
